@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/logo.png" alt="Securiskan Logo"/>
+  <img src="public/imgs/logo.png" alt="Securiskan Logo"/>
 </p>
 
 
@@ -7,7 +7,7 @@ Securiskan is a cutting-edge code analysis tool currently in development, aimed 
 
 ## Features
 
-- **Comprehensive Analysis**: Support for multiple programming languages, including PHP, JavaScript, HTML, and TypeScript.
+- **Comprehensive Analysis**: Support for multiple programming languages, including PHP, JavaScript, HTML...
 - **Vulnerability Detection**: Identification of a wide range of vulnerabilities, such as XSS, SQL Injection, and other known security flaws.
 - **Detailed Reports**: Generation of reports highlighting specific vulnerabilities, their exact locations in the code, and suggestions for mitigation.
 - **Ease of Use**: A simple and intuitive user interface for file uploads and analysis visualization.
