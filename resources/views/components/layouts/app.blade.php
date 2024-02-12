@@ -35,26 +35,9 @@
 </head>
 
 <body>
-    <header class="w-full mx-auto bg-white containe h-fullr">
-        <div class="flex flex-col items-center py-2">
-            <a class="text-3xl font-bold text-gray-800 uppercase hover:text-gray-700" href="/">
-                Securiskan
-            </a>
-            <p class="text-gray-600 text-1xl ">
-                Security File Analysis
-            </p>
-        </div>
-        <nav class="w-full py-2 bg-white border-t border-b" x-data="{ open: false }">
-            <div
-                class="container flex flex-col items-center justify-center w-full px-6 py-0 mx-auto mt-0 text-sm font-bold uppercase sm:flex-row">
-                <a href="/" class="px-4 py-1 mx-2 rounded hover:bg-gray-200">About</a>
-                <a href="javascript:void(0)" onclick="scrollToFooter()" class="px-4 py-1 mx-2 rounded hover:bg-gray-200">Contact</a>
-                <a href="https://github.com/sponsors/boloto1979" class="px-4 py-1 mx-2 rounded hover:bg-gray-200">Contribution</a>
-                <a href="https://github.com/boloto1979/Securiskan/tree/main"
-                    class="px-4 py-1 mx-2 rounded hover:bg-gray-200">Repository</a>
-            </div>
-        </nav>
-    </header>
+
+    @include('components.layouts.header')
+
     <div class="flex flex-col w-full bg-gray-200 p-14 ">
         <p class="pb-2 text-center">Shielding your digital world from unseen
             threats, <br>ensuring every click is a safe step through the vast cyberspace.</p>
@@ -92,26 +75,8 @@
         </div>
     </section>
 
-    <footer class="text-white bg-gray-800">
-        <div class="container px-6 py-8 mx-auto">
-            <div class="flex flex-col items-center">
-                <div class="sm:flex sm:justify-center sm:items-center">
-                    <a href="javascript:void(0)" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="mb-2 text-xl font-bold sm:mb-0">Securiskan</a>
-                    <div class="sm:ml-4 sm:flex-grow">
-                        <p class="text-center sm:text-left">Protecting your digital journey.</p>
-                    </div>
-                </div>
-                <ul class="flex flex-wrap justify-center mt-4">
-                    <li><a href="javascript:void(0)" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="px-4 hover:underline">Home</a></li>
-                    <li><a href="#about" class="px-4 hover:underline">About</a></li>
-                    <li><a href="https://github.com/sponsors/boloto1979" class="px-4 hover:underline">Contribution</a></li>
-                </ul>
-                <div class="mt-4">
-                    <p>&copy; {{ date('Y') }} Securiskan. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('components.layouts.footer')
+
     <script>
         function scrollToFooter() {
             const footer = document.getElementById('contact');
