@@ -2,31 +2,32 @@
   <img src="public/imgs/logo.png" alt="Securiskan Logo"/>
 </p>
 
+# Securiskan
 
-Securiskan is a cutting-edge code analysis tool currently in development, aimed at uncovering security vulnerabilities across various file types. Utilizing a powerful suite of libraries along with sophisticated static analysis algorithms, Securiskan is designed to enhance the security of web applications through the early detection of potential security vulnerabilities. This project is actively being refined to provide comprehensive security insights and solutions for developers and organizations.
+Securiskan is an innovative file scanning tool in active development, designed to detect malicious content such as viruses, malware, trojans, and other potential threats. With a powerful suite of scanning technologies and sophisticated detection algorithms, Securiskan aims to safeguard digital environments by providing thorough scans of files for any malevolent activities. We are dedicated to delivering comprehensive security solutions to protect individuals and organizations from digital harm.
 
 ## Features
 
-- **Comprehensive Analysis**: Support for multiple programming languages, including PHP, JavaScript, HTML...
-- **Vulnerability Detection**: Identification of a wide range of vulnerabilities, such as XSS, SQL Injection, and other known security flaws.
-- **Detailed Reports**: Generation of reports highlighting specific vulnerabilities, their exact locations in the code, and suggestions for mitigation.
-- **Ease of Use**: A simple and intuitive user interface for file uploads and analysis visualization.
-- **Continuous Integration**: Capability to integrate with CI/CD pipelines for automated code analysis.
+- **Thorough Scanning**: Comprehensive checks against a database of known threats to identify malicious content.
+- **Malware Detection**: Capable of detecting a broad spectrum of malware, viruses, trojans, and other security threats.
+- **Detailed Reports**: Generation of detailed reports, outlining the nature of detected threats and recommended actions.
+- **User-Friendly Interface**: A streamlined and intuitive interface for easy file uploads and scan management.
+- **Real-Time Updates**: Regular updates to threat databases to ensure protection against emerging risks.
 
 ## How to Use
 
-To use Securiskan, follow these simple steps:
+To utilize Securiskan's scanning capabilities, just follow these steps:
 
-1. **File Upload**: Visit the Securiskan site and use the upload field to submit the code file you wish to analyze.
-2. **Analysis**: The system will automatically process the file and perform the vulnerability analysis.
-3. **Report Viewing**: Upon analysis completion, a detailed report will be available, indicating the found vulnerabilities and offering recommendations for correction.
+1. **File Upload**: Navigate to the Securiskan platform and upload the file you want to check for threats.
+2. **Scanning Process**: Securiskan will thoroughly scan the file using its advanced detection algorithms.
+3. **Review the Report**: After the scan, you'll receive a report detailing any detected threats and advice for next steps.
 
 ## Contribution
 
-Contributions to the project are welcome! If you have a suggestion to improve Securiskan, feel free to create a pull request or open an issue.
+We welcome contributions to Securiskan! If you have ideas on how to enhance its capabilities, don't hesitate to fork the repository, submit a pull request, or open an issue.
 
 ## License
 
-Securiskan is distributed under the MIT License. See LICENSE for more information.
+Securiskan is made available under the MIT License. For more details, see the LICENSE file.
 
 Developed with ❤️
