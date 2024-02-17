@@ -22,5 +22,5 @@ Route::get('/about', function () {
     return view('components.layouts.about');
 });
 
-Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.upload');
+Route::post('/upload', [FileUploadController::class, 'store']);
 

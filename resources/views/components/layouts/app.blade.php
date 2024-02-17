@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- CSRF Token -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,6 +38,10 @@
 <body>
 
     @include('components.layouts.header')
+
+    {{-- <div class="flex flex-col w-full p-2 bg-red-600 ">
+        <h1 class="pb-1 text-center text-white">Website under maintenance<br>For more information contact us.</h1>
+    </div> --}}
 
     <div class="flex flex-col w-full bg-gray-200 p-14 ">
         <p class="pb-2 text-center">Shielding your digital world from unseen
