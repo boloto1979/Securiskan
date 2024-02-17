@@ -4,33 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
+use Socket\Raw\Factory as SocketFactory;
 
 class FileUploadController extends Controller
 {
     public function store(Request $request)
     {
         try {
-            $validator = Validator::make($request->all(), [
-                'file' => 'required|file|clamav',
-            ]);
-
-            if ($validator->fails()) {
+            if (!$request->hasFile('file')) {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Validação do arquivo falhou.',
-                    'errors' => $validator->errors()
-                ], 422);
+                    'message' => 'No files were sent.',
+                ], 400);
             }
 
             $file = $request->file('file');
-            $result = $this->checkFileWithApi($file);
+            $result = $this->checkFileWithClamAV($file);
 
-            $safetyMessage = $result['is_safe'] ? 'O arquivo é seguro.' : 'O arquivo pode ser perigoso.';
+            $safetyMessage = $result['is_safe'] ? 'The file is safe.' : 'The file may be dangerous.';
 
             return response()->json([
                 'success' => true,
-                'message' => 'Análise concluída. ' . $safetyMessage,
+                'message' => 'Analysis completed. ' . $safetyMessage,
                 'data' => $result
             ]);
         } catch (\Exception $e) {
@@ -38,19 +33,37 @@ class FileUploadController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Ocorreu um erro durante a análise do arquivo.',
+                'message' => 'An error occurred while processing the file.',
                 'error' => $e->getMessage()
             ], 500);
         }
     }
 
-
-    private function checkFileWithApi($file)
+    private function checkFileWithClamAV($file)
     {
+        // Replace 'tcp://clamav-server:3310' with your ClamAV server address
+        $socketFactory = new SocketFactory();
+        $socket = $socketFactory->createClient('tcp://clamav-server:3310');
+        $socket->write("zINSTREAM\0");
 
-        return [
-            'is_safe' => true,
-            'scan_details' => 'Detalhes fictícios da verificação'
-        ];
+        $fileResource = fopen($file->getRealPath(), 'rb');
+
+        $chunkSize = 1024;
+
+        while (!feof($fileResource)) {
+            $chunk = fread($fileResource, $chunkSize);
+            $socket->write(pack('N', strlen($chunk)) . $chunk);
+        }
+        fclose($fileResource);
+        $socket->write(pack('N', 0));
+        $result = $socket->read(4096);
+
+        $socket->close();
+
+        if (strpos($result, 'OK') !== false) {
+            return ['is_safe' => true, 'scan_details' => 'No threat found.'];
+        } else {
+            return ['is_safe' => false, 'scan_details' => 'Threats detected. ' . $result];
+        }
     }
 }
