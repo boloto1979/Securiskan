@@ -24,13 +24,17 @@ To utilize Securiskan's scanning capabilities, just follow these steps:
 
 ## Development Setup
 
-For developers looking to test or contribute to the Securiskan project, it's essential to configure a ClamAV server on your machine to enable the scanning functionality. Follow these steps to set up your environment:
+Developers who wish to test the project should follow these steps:
 
-1. **ClamAV Server Installation**: Install ClamAV on your local machine. Detailed installation instructions can be found on the ClamAV official documentation.
-2. **Configuration**: Configure the ClamAV server to work with Securiskan. This involves setting up the necessary environment variables and ensuring the ClamAV server is running.
-3. **Controller Configuration**: Integrate the ClamAV server with the Securiskan controller by adjusting the project's configuration files to point to your local ClamAV server.
+1. Create an account on VirusTotal.
+2. Obtain the API key provided by VirusTotal.
+3. Place the API key in a file named `.env` in the root directory of the project with the following format:
+```
+VIRUSTOTAL_API_KEY=your_api_key_here
+```
+4. Save the `.env` file.
 
-Please ensure your ClamAV server is running before starting the Securiskan application to allow for seamless file scanning and threat detection.
+This API key is necessary for utilizing VirusTotal's services for file scanning during the development process.
 
 
 ## Contribution

@@ -4,10 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Socket\Raw\Factory as SocketFactory;
+use App\Services\VirusTotalService;
 
 class FileUploadController extends Controller
 {
+    protected $virusTotalService;
+
+    public function __construct(VirusTotalService $virusTotalService)
+    {
+        $this->virusTotalService = $virusTotalService;
+    }
+
     public function store(Request $request)
     {
         try {
@@ -19,17 +26,20 @@ class FileUploadController extends Controller
             }
 
             $file = $request->file('file');
-            $result = $this->checkFileWithClamAV($file);
+            $filePath = $file->getRealPath();
+            $result = $this->virusTotalService->scanFile($filePath);
 
-            $safetyMessage = $result['is_safe'] ? 'The file is safe.' : 'The file may be dangerous.';
+            $isSafe = $this->interpretVirusTotalResponse($result);
+
+            $safetyMessage = $isSafe ? 'The file is safe.' : 'The file may be dangerous.';
 
             return response()->json([
                 'success' => true,
-                'message' => 'Analysis completed. ' . $safetyMessage,
+                'message' => 'Complete analysis. ' . $safetyMessage,
                 'data' => $result
             ]);
         } catch (\Exception $e) {
-            Log::error($e->getMessage());
+            Log::error("Error processing the file: " . $e->getMessage());
 
             return response()->json([
                 'success' => false,
@@ -39,31 +49,11 @@ class FileUploadController extends Controller
         }
     }
 
-    private function checkFileWithClamAV($file)
+    private function interpretVirusTotalResponse($response)
     {
-        // Replace 'tcp://clamav-server:3310' with your ClamAV server address
-        $socketFactory = new SocketFactory();
-        $socket = $socketFactory->createClient('tcp://clamav-server:3310');
-        $socket->write("zINSTREAM\0");
-
-        $fileResource = fopen($file->getRealPath(), 'rb');
-
-        $chunkSize = 1024;
-
-        while (!feof($fileResource)) {
-            $chunk = fread($fileResource, $chunkSize);
-            $socket->write(pack('N', strlen($chunk)) . $chunk);
+        if (isset($response['data']) && $response['data']['attributes']['last_analysis_stats']['malicious'] > 0) {
+            return false;
         }
-        fclose($fileResource);
-        $socket->write(pack('N', 0));
-        $result = $socket->read(4096);
-
-        $socket->close();
-
-        if (strpos($result, 'OK') !== false) {
-            return ['is_safe' => true, 'scan_details' => 'No threat found.'];
-        } else {
-            return ['is_safe' => false, 'scan_details' => 'Threats detected. ' . $result];
-        }
+        return true;
     }
 }
