@@ -24,18 +24,33 @@ To utilize Securiskan's scanning capabilities, just follow these steps:
 
 ## Development Setup
 
-Developers who wish to test the project should follow these steps:
+For developers interested in testing or contributing to the project, please follow these setup steps to get started:
 
-1. Create an account on VirusTotal.
-2. Obtain the API key provided by VirusTotal.
-3. Place the API key in a file named `.env` in the root directory of the project with the following format:
+1. **Build the Project**: First, build the Docker images for the project by running:
 ```
-VIRUSTOTAL_API_KEY=your_api_key_here
+docker-compose build
 ```
-4. Save the `.env` file.
-
-This API key is necessary for utilizing VirusTotal's services for file scanning during the development process.
-
+2. **Start the Services**: Once the build is complete, start the services using:
+```
+docker-compose up -d
+```
+3. **Database Migrations**: After the services are up, apply the database migrations to set up the necessary tables:
+```
+php artisan migrate
+```
+or
+```
+docker-compose exec app php artisan migrate
+```
+4. **Start the Project**: Finally, use Laravel's built-in server to start the project:
+```docker-compose exec app php artisan serve
+php artisan serve
+```
+or
+```
+docker-compose exec app php artisan serve
+```
+Ensure Docker and Docker Compose are installed on your machine before proceeding with the above steps.
 
 ## Contribution
 
