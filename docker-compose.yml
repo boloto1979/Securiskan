@@ -4,7 +4,7 @@ services:
     securiskan-app:
         build: .
         container_name: securiskan-app
-        entrypoint: sh cmd.sh
+        # entrypoint: sh cmd.sh
         volumes:
             - ./:/var/www/html
         ports:
