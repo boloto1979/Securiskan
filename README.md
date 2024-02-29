@@ -26,6 +26,10 @@ To utilize Securiskan's scanning capabilities, just follow these steps:
 
 For developers interested in testing or contributing to the project, please follow these setup steps to get started:
 
+**Preparation**: Before building the project, it is essential to install the project dependencies. Run the following command in the project's root directory:
+```
+composer install
+```
 1. **Build the Project**: First, build the Docker images for the project by running:
 ```
 docker-compose build
