@@ -15,7 +15,7 @@
             <a href="https://github.com/sponsors/boloto1979" class="px-4 py-1 mx-2 rounded hover:bg-gray-200">Contribution</a>
             <a href="https://github.com/boloto1979/Securiskan/tree/main"
                 class="px-4 py-1 mx-2 rounded hover:bg-gray-200">Repository</a>
-            <a href="/admin" class="px-4 py-1 mx-2 rounded hover:bg-gray-200">Login</a>
+            {{-- <a href="/admin" class="px-4 py-1 mx-2 rounded hover:bg-gray-200">Login</a> --}}
         </div>
     </nav>
 </header>
