@@ -22,40 +22,6 @@ To utilize Securiskan's scanning capabilities, just follow these steps:
 2. **Scanning Process**: Securiskan will thoroughly scan the file using its advanced detection algorithms.
 3. **Review the Report**: After the scan, you'll receive a report detailing any detected threats and advice for next steps.
 
-## Development Setup
-
-For developers interested in testing or contributing to the project, please follow these setup steps to get started:
-
-**Preparation**: Before building the project, it is essential to install the project dependencies. Run the following command in the project's root directory:
-```
-composer install
-```
-1. **Build the Project**: First, build the Docker images for the project by running:
-```
-docker-compose build
-```
-2. **Start the Services**: Once the build is complete, start the services using:
-```
-docker-compose up -d
-```
-3. **Database Migrations**: After the services are up, apply the database migrations to set up the necessary tables:
-```
-php artisan migrate
-```
-or
-```
-docker-compose exec app php artisan migrate
-```
-4. **Start the Project**: Finally, use Laravel's built-in server to start the project:
-```docker-compose exec app php artisan serve
-php artisan serve
-```
-or
-```
-docker-compose exec app php artisan serve
-```
-Ensure Docker and Docker Compose are installed on your machine before proceeding with the above steps.
-
 ## Contribution
 
 We welcome contributions to Securiskan! If you have ideas on how to enhance its capabilities, don't hesitate to fork the repository, submit a pull request, or open an issue.
